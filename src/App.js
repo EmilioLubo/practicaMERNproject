@@ -36,13 +36,12 @@ function App() {
   return (
     <main>
       <article className='card'>
-        <h2 className='card__title'>CINEMA</h2>
+        <h2 className='card__title'>{data[count].category}</h2>
         <div className='card__img--container'>
           <img className='card__img' src={data[count].image} alt={data[count].name} />
         </div>
         {display ? (<div className='card__details'>
                       <Info textType='card__name' text={data[count].name} />
-                      <Info textType='card__cat' text={data[count].category}/>
                       <Info textType='card__desc' text={data[count].description}/>
                     </div>) : 
                     <></>

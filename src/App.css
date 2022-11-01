@@ -29,7 +29,7 @@ main{
 }
 .card__details{
     display: flex;
-    height: 8rem;
+    height: 6rem;
     flex-direction: column;
     gap: .5rem;
 }
@@ -37,10 +37,6 @@ main{
     text-align: center;
     padding-top: .5rem;
     font-size: 1.3em;
-}
-.card__cat{
-    text-align: center;
-    font-weight: 600;
 }
 .card__desc{
     padding-bottom: 1rem;
