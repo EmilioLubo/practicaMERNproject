@@ -1,6 +1,6 @@
 import './App.css'
 import data from './data/events1'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
 import Info from './components/Info'
 import Slider from './components/Slider'
 import Displayer from './components/Displayer'
@@ -9,6 +9,16 @@ function App() {
 
   let [count, setCount] = useState(0)
   let [display, setDisplay] = useState(false)
+
+  useEffect(() => {
+    let interval =  setInterval(() => {
+      countPlus()
+    }, 5000);
+    return () => {
+      clearInterval(interval)
+    }
+  },)
+  
 
   let countLess = () => {
     count > 0 ? setCount(--count) : setCount(data.length - 1)
