@@ -1,12 +1,14 @@
-import './index.css'
+import './App.css'
 import data from './data/events1'
 import { useState } from 'react'
 import Info from './components/Info'
 import Slider from './components/Slider'
+import Displayer from './components/Displayer'
 
 function App() {
 
   let [count, setCount] = useState(0)
+  let [display, setDisplay] = useState(false)
 
   let countLess = () => {
     count > 0 ? setCount(--count) : setCount(data.length - 1)
@@ -14,21 +16,36 @@ function App() {
   let countPlus = () => {
     count < data.length - 1 ? setCount(++count): setCount(0)
   }
+  let showDetails = () => {
+    setDisplay(true)
+  }
+  let hideDetails = () => {
+    setDisplay(false)
+  }
 
   return (
-    <div className='card black'>
-      <h2 className='titulo white flex j-center a-center'>CINEMA</h2>
-      <img src={data[count].image} alt={data[count].name} className='photo' />
-      <Info text={data[count].name} />
-      <Info text={data[count].category}/>
-      <Info text={data[count].description}/>
-      <div className='flex j-center a-center'>
-        <Slider position='r25' name='PREVIEW' action={countLess}/>
-        <p className='gray flex j-center a-center'>HIDE DETAILS</p>
-        <p className='gray flex j-center a-center'>VIEW DETAILS</p>
-        <Slider position='l25' name='NEXT' action={countPlus}/>
-      </div>
-    </div>
+    <main>
+      <article className='card'>
+        <h2 className='card__title'>CINEMA</h2>
+        <div className='card__img--container'>
+          <img className='card__img' src={data[count].image} alt={data[count].name} />
+        </div>
+        {display ? (<div className='card__details'>
+                      <Info textType='card__name' text={data[count].name} />
+                      <Info textType='card__cat' text={data[count].category}/>
+                      <Info textType='card__desc' text={data[count].description}/>
+                    </div>) : 
+                    <></>
+        }
+        <div className='card__buttons'>
+          <Slider name='PREVIEW' action={countLess}/>
+          {display ? <Displayer action={hideDetails} name='HIDE DETAILS' /> :
+          <Displayer action={showDetails} name='VIEW DETAILS' />
+          }
+          <Slider name='NEXT' action={countPlus}/>
+        </div>
+      </article>
+    </main>
   )
 }
 

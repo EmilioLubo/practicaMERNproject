@@ -1,9 +1,9 @@
 import React from 'react'
 
-export default function Info({text}) {
+export default function Info({textType, text}) {
   return (
-    <div className='datos white flex a-center'>
-        <p>{text}</p>
+    <div>
+        <p className={textType}>{text}</p>
     </div>
   )
 }
